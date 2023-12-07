@@ -39,8 +39,8 @@
     layer.bindPopup(`<b>Département ${codeDepartement}</b><br>${popupContent}`);
   }
 
-  // Charger les données GeoJSON
-  fetch('./data/departements.geojson')
+  // Charger les données GeoJSON depuis la racine du répertoire
+  fetch('./departements.geojson')  // Assurez-vous que le nom du fichier est correct
     .then(response => response.json())
     .then(data => {
       L.geoJSON(data, {
