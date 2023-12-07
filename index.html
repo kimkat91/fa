@@ -20,24 +20,6 @@
     </div>
 
     <script>
-        function parseCSV(csv) {
-            // Votre logique de parsing CSV ici
-            // Retournez les données sous une forme exploitable
-        }
-
-        function readFile(file) {
-            return new Promise((resolve, reject) => {
-                const reader = new FileReader();
-                reader.onload = (event) => {
-                    resolve(event.target.result);
-                };
-                reader.onerror = (error) => {
-                    reject(error);
-                };
-                reader.readAsText(file);
-            });
-        }
-
         async function searchFamilies() {
             const input = document.getElementById('fileInput');
             const file = input.files[0];
@@ -56,9 +38,9 @@
             }
         }
 
-        // Initialisation de Tabletop.js
+        // Initialisation de Tabletop.js avec l'URL brute de GitHub
         Tabletop.init({
-            key: 'fa.csv', // Utilisez le chemin relatif vers le fichier CSV s'il est dans le même répertoire
+            key: 'https://raw.githubusercontent.com/VOTRE-UTILISATEUR/VOTRE-REPO/main/fa.csv',
             callback: function(data, tabletop) {
                 // Fonction callback appelée lorsque les données sont chargées
                 console.log(data);
