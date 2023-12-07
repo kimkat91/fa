@@ -27,16 +27,23 @@
 
   // Exemple d'objet avec des informations sur les familles par département
   const familleInfos = {
-    '01': 'toto tata',
-    '02': 'titi',
+    '01': {
+      nom: 'Kim ESSER',
+      telephone: '0623076433',
+    },
+    '02': {
+      nom: 'Informations sur les familles du département 02',
+      autresInfos: 'Plus de détails...',
+    },
     // Ajoutez d'autres départements avec leurs informations
   };
 
   // Fonction pour afficher le pop-up au clic sur un département
   function onEachFeature(feature, layer) {
     const codeDepartement = feature.properties.code;
-    const popupContent = familleInfos[codeDepartement] || 'Aucune information disponible';
-    layer.bindPopup(`<b>Département ${codeDepartement}</b><br>${popupContent}`);
+    const familleInfo = familleInfos[codeDepartement] || { nom: 'Aucune information disponible', autresInfos: '' };
+    const popupContent = `<b>Département ${codeDepartement}</b><br>Nom: ${familleInfo.nom}<br>Téléphone: ${familleInfo.telephone}`;
+    layer.bindPopup(popupContent);
   }
 
   // Charger les données GeoJSON depuis la racine du répertoire
