@@ -1,12 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
-var monObjet = {
-    'absence': uneValeur
-};
-var monObjet = {
-    'abs': uneValeur
-};
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carte Interactive</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <style>
+    #map {
+      height: 600px;
+    }
+  </style>
+</head>
+<body>
 
+<div id="map"></div>
+
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script>
+  // Coordonnées du centre de la France
+  const map = L.map('map').setView([46.6031, 1.8208], 6);
+
+  // Ajout du fond de carte OpenStreetMap
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '© OpenStreetMap contributors'
+  }).addTo(map);
+
+  // Exemple d'objet avec des informations sur les familles par département
+  const familleInfos = {
+    '01': {
+      FA: '0',
+      Tél: '0',
+      Compo: '0',
+      Habilitation: '0',
+      'Tps abs': '0',
+      Accueil: '0',
+      Type chien: '0',
+      Animaux: '0',
+      'Durée d'accueil': '0',
+    },
+    // Ajoutez les autres départements de la même manière
+    // ...
+  };
+
+  // Vous pouvez maintenant utiliser l'objet familleInfos dans votre code
+</script>
+
+</body>
+</html>
+Assurez-vous de remplir les informations manquantes pour chaque département dans l'objet familleInfos. Notez que j'ai tronqué les données pour des raisons de concision, assurez-vous de remplir toutes les informations nécessaires.
+
+
+
+
+User
+qu'as tu modifié
+ChatGPT
+J'ai corrigé quelques erreurs syntaxiques dans votre code HTML et JavaScript. Voici les modifications apportées :
+
+html
+Copy code
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
