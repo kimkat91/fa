@@ -1,36 +1,33 @@
-function searchFamilies() {
-    // Récupérer le numéro du département depuis l'input
-    var deptNumber = document.getElementById("deptNumber").value;
+// Remplacez 'VOTRE_ID_FEUILLE_CALCUL' par l'ID de votre feuille de calcul
+const spreadsheetId = '152OjXcjZhWUeRVFnMmEnh98zNCTfVS_o';
 
-    // Effectuer la recherche (vous devrez adapter cela à votre logique)
-    var families = searchFamiliesByDepartment(deptNumber);
-
-    // Afficher les résultats dans la div "result"
-    displayResults(families);
+// Fonction pour charger les données depuis Google Sheets
+function loadSheet() {
+    // Configuration de Tabletop.js
+    Tabletop.init({
+        key: spreadsheetId,
+        callback: processData,
+        simpleSheet: true,
+        postProcess: processTabletopData
+    });
 }
 
-function searchFamiliesByDepartment(deptNumber) {
-    // Logique de recherche à adapter selon vos besoins
-    // Cela pourrait impliquer de parcourir un tableau de données en JavaScript
-    // ou de faire une requête à une API, etc.
-    // Retournez les résultats sous la forme d'un tableau d'objets
-    return [
-        { Nom: "Famille 1", Prenom: "John", Adresse: "123 Rue A", Telephone: "555-1234" },
-        { Nom: "Famille 2", Prenom: "Jane", Adresse: "456 Rue B", Telephone: "555-5678" }
-        // ...
-    ];
+// Fonction appelée une fois les données chargées
+function processData(data, tabletop) {
+    // Vous avez maintenant les données de Google Sheets (data)
+    console.log(data);
+
+    // À partir d'ici, vous pouvez traiter les données comme vous le feriez normalement
 }
 
-function displayResults(families) {
-    // Construire la représentation HTML des résultats
-    var resultHTML = "<h2>Résultats</h2><table><tr><th>Nom</th><th>Prénom</th><th>Adresse</th><th>Téléphone</th></tr>";
+// Fonction appelée après le traitement par Tabletop.js
+function processTabletopData(element) {
+    // Extrait les données de l'élément
+    const data = element.elements[0].raw;
 
-    for (var i = 0; i < families.length; i++) {
-        resultHTML += "<tr><td>" + families[i].Nom + "</td><td>" + families[i].Prenom + "</td><td>" + families[i].Adresse + "</td><td>" + families[i].Telephone + "</td></tr>";
-    }
-
-    resultHTML += "</table>";
-
-    // Afficher les résultats dans la div "result"
-    document.getElementById("result").innerHTML = resultHTML;
+    // Vous pouvez maintenant traiter les données comme vous le feriez normalement
+    console.log(data);
 }
+
+// Appelez la fonction pour charger les données
+loadSheet();
