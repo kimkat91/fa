@@ -3,31 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recherche de Famille d'accueil</title>
+    <title>Référencement des Familles d'Accueil</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tabletop.js/1.5.1/tabletop.min.js"></script>
 </head>
 <body>
-    <button onclick="loadSheet()">https://docs.google.com/spreadsheets/d/152OjXcjZhWUeRVFnMmEnh98zNCTfVS_o/edit?usp=drive_link&ouid=114557284975205551802&rtpof=true&sd=true</button>
 
-    <div id="result"></div>
+<!-- Formulaire pour entrer le numéro de département -->
+<label for="deptNumber">Numéro du Département:</label>
+<input type="text" id="deptNumber" name="deptNumber">
+<button onclick="loadSheet()">Rechercher</button>
 
-    <script>
-        async function loadSheet() {
-            const driveLink = 'LIEN_DE_PARTAGE_DU_FICHIER_EXCEL';
+<!-- Résultats affichés ici -->
+<div id="results-container"></div>
 
-            try {
-                const response = await fetch(driveLink, { method: 'GET' });
-                const excelData = await response.text();
+<script src="app.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        loadSheet();
+    });
+</script>
 
-                // Vous avez maintenant le contenu du fichier Excel (excelData)
-                console.log(excelData);
-
-                // À partir d'ici, vous pouvez utiliser une bibliothèque comme SheetJS pour traiter les données Excel
-                // https://github.com/SheetJS/sheetjs
-                // Notez que l'utilisation de SheetJS nécessitera probablement de charger une bibliothèque externe dans votre projet
-            } catch (error) {
-                console.error('Erreur lors du chargement du fichier Excel:', error);
-            }
-        }
-    </script>
 </body>
 </html>
