@@ -22,22 +22,42 @@
     </div>
 
     <script>
-        const csvUrl = 'https://raw.githubusercontent.com/votre-utilisateur/votre-depot/chemin/vers/votre-fichier.csv';
+        function parseCSV(csv) {
+            // Votre logique de parsing CSV ici
+            // Retournez les données sous une forme exploitable
+        }
 
-        async function fetchData() {
-            const response = await axios.get(csvUrl);
-            const data = parseCSV(response.data);  // Assurez-vous d'avoir une fonction de parse adaptée à votre format CSV
-            return data;
+        function readFile(file) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.onload = (event) => {
+                    resolve(event.target.result);
+                };
+                reader.onerror = (error) => {
+                    reject(error);
+                };
+                reader.readAsText(file);
+            });
         }
 
         async function searchFamilies() {
-            // Votre logique de recherche ici
-            const values = await fetchData();
+            const input = document.getElementById('fileInput');
+            const file = input.files[0];
 
-            // Votre logique d'affichage des résultats ici
-            console.log(values);
+            if (file) {
+                try {
+                    const content = await readFile(file);
+                    const data = parseCSV(content);
+                    // Votre logique d'affichage des résultats ici
+                    console.log(data);
+                } catch (error) {
+                    console.error('Erreur lors de la lecture du fichier :', error);
+                }
+            } else {
+                console.error('Aucun fichier sélectionné.');
+            }
         }
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <input type="file" id="fileInput" />
 </body>
 </html>
