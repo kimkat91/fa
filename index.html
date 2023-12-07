@@ -1,27 +1,43 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Référencement des Familles d'Accueil</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/tabletop.js/1.5.1/tabletop.min.js"></script>
+    <title>Référencement Familles d'Accueil</title>
+    <style>
+        /* Styles CSS pour la mise en page */
+    </style>
 </head>
 <body>
+    <h1>Référencement Familles d'Accueil par Département</h1>
 
-<!-- Formulaire pour entrer le numéro de département -->
-<label for="deptNumber">Numéro du Département:</label>
-<input type="text" id="deptNumber" name="deptNumber">
-<button onclick="loadSheet()">Rechercher</button>
+    <form id="searchForm">
+        <label for="departmentNumber">Numéro du département :</label>
+        <input type="text" id="departmentNumber" name="departmentNumber" required>
+        <button type="button" onclick="searchFamilies()">Rechercher</button>
+    </form>
 
-<!-- Résultats affichés ici -->
-<div id="results-container"></div>
+    <div id="results">
+        <!-- Les résultats de la recherche seront affichés ici -->
+    </div>
 
-<script src="app.js"></script>
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        loadSheet();
-    });
-</script>
+    <script>
+        const csvUrl = 'https://raw.githubusercontent.com/votre-utilisateur/votre-depot/chemin/vers/votre-fichier.csv';
 
+        async function fetchData() {
+            const response = await axios.get(csvUrl);
+            const data = parseCSV(response.data);  // Assurez-vous d'avoir une fonction de parse adaptée à votre format CSV
+            return data;
+        }
+
+        async function searchFamilies() {
+            // Votre logique de recherche ici
+            const values = await fetchData();
+
+            // Votre logique d'affichage des résultats ici
+            console.log(values);
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </body>
 </html>
